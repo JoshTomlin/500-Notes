@@ -1,222 +1,186 @@
-\documentclass[a4paper]{report}
-
-\setlength\parindent{0pt}
-\setlength{\parskip}{1.5em}
-\usepackage{todonotes}
-\usepackage{fancyhdr}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{tabularx}
-\usepackage{relsize}
-\usepackage{tikz-cd}
-\usepackage{amssymb}
-\usepackage{bbm}
-\usepackage{hyperref}
-\usepackage[margin=2.2cm]{geometry}
-\usepackage{graphicx}
-\usepackage{tensor}
-\usepackage{braket}
-\usepackage{simplewick}
-\usepackage{onedown}
-
-\newtheoremstyle{question}% <name>
-    {1.5em}% <Space above>
-    {0em}% <Space below>
-    {}% <Body font>
-    {}% <Indent amount>
-    {\bf}% <Theorem head font>
-    {:}% <Punctuation after theorem head>
-    {.5em}% <Space after theorem headi>
-    {}% <Theorem head spec (can be left empty, meaning `normal')>
-
-\newtheoremstyle{theorem}% <name>
-    {1.5em}% <Space above>
-    {0em}% <Space below>
-    {\it}% <Body font>
-    {}% <Indent amount>
-    {\bf}% <Theorem head font>
-    {.}% <Punctuation after theorem head>
-    {.5em}% <Space after theorem headi>
-    {}% <Theorem head spec (can be left empty, meaning `normal')>
-
-
-\theoremstyle{question}
-\newtheorem{question}{Question}
-
-\theoremstyle{theorem}
-\newtheorem{theorem}{Theorem}[question]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{lemma}[theorem]{Lemma}
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[theorem]
+\documentclass[a4paper]{JoshCards}
 
 \title{System Notes for 500}
 \author{Josh Tomlin}
 \pagestyle{fancy}
 \date{}
 
-\newcommand*{\QED}{\hfill\ensuremath{\square}}%
-\newcommand*{\zbar}{\overline{z}}%
-\newcommand*{\Cbar}{\overline{\textbf{C}}}%
-\newcommand*{\C}{\textbf{C}}%
-\newcommand*{\R}{\textbf{R}}%
-\newcommand*{\Rn}{{\textbf{R}^n}}%
-\newcommand*{\Z}{\textbf{Z}}%
-\newcommand*{\N}{\textbf{N}}%
-\newcommand*{\Q}{\textbf{Q}}%
-\newcommand*{\Hb}{\textbf{H}}%
-\newcommand*{\Xuniv}{\tilde{X}_{\text{Univ}}}%
-\newcommand*{\Xabel}{\tilde{X}_{\text{Abel}}}%
-\newcommand{\<}{\left\langle}%
-\renewcommand{\>}{\right\rangle}%
-\newcommand*{\id}{\text{id}}%
-\newcommand*{\im}{\text{Im }}%
-\newcommand*{\redH}{\tilde{H}}%
-\newcommand*{\Ext}{\text{Ext}}%
-\newcommand*{\Hom}{\text{Hom}}%
-\newcommand*{\m}{m_*}%
-\newcommand*{\inv}{^{-1}}%
-\newcommand*{\x}{\textbf{x}}%
-\newcommand*{\ve}{\textbf{v}}%
-\newcommand*{\ue}{\textbf{u}}%
-\newcommand*{\RP}{\textbf{RP}}%
-\newcommand{\F}{\textbf{F}}
-\newcommand{\spann}{\text{span}}
-\newcommand{\khat}{{\hat{1},...,\hat{k}}}
-\newcommand{\A}{\mathcal{A}}
-\newcommand{\Cs}{C^\infty}
-\newcommand{\Obb}{\mathbb{O}}
-\newcommand{\CP}{\textbf{CP}}
-\newcommand{\D}{\mathfrak{D}}
-\newcommand{\timesk}{^{\times k}}
-\newcommand{\tensork}{^{\otimes k}}
-\newcommand{\dtensork}{^{*\otimes k}}
-\newcommand{\Ad}{\text{Ad}}
-\newcommand{\ad}{\text{ad}}
-\newcommand{\Aut}{\text{Aut}}
-\newcommand{\End}{\text{End}}
-\newcommand{\Ric}{\text{Ric}}
-\newcommand{\Hyp}{\textbf{H}}
-\newcommand{\xdot}{\dot{x}}
-\newcommand{\xddot}{\ddot{x}}
-\newcommand{\ydot}{\dot{y}}
-\newcommand{\yddot}{\ddot{y}}
-\DeclareMathOperator{\sech}{sech}
-\DeclareMathOperator{\Tr}{Tr}
-\DeclareMathOperator{\Ker}{Ker}
-\newcommand{\hol}{\text{hol}_\nabla}
-\newcommand{\holg}{\text{hol}_{\phi \cdot \nabla}}
-\newcommand{\StabGE}{\text{Stab}_{\mathcal{G}_E}}
-\newcommand{\Hol}{\mathcal{H}_{\nabla, x}}
-\newcommand{\qbar}{\overline{q}}
-\newcommand{\cbar}{\overline{c}}
-\newcommand{\wbar}{\overline{w}}
-\renewcommand{\H}{\textbf{H}}
-\newcommand{\su}{\mathfrak{su}}
-\newcommand{\wmc}{\omega_{MC}}
-\newcommand{\G}{\mathcal{G}}
-\newcommand{\HH}{\mathcal{H}}
-\newcommand{\harm}{_\text{harm}}
-\newcommand{\Aharm}{\mathcal{A}_\text{harm}}
-\newcommand{\phiF}{\phi_{F_\theta}}
-\newcommand{\tphiF}{\widetilde{\phi_{F_\theta}}}
-\newcommand{\tv}{\tilde{v}}
-\newcommand{\g}{\mathfrak{g}}
-\newcommand{\h}{\mathfrak{h}}
-\newcommand{\cC}{\mathfrak{C}}
-\newcommand{\heis}{\mathfrak{heis}}
-\newcommand{\gl}{\mathfrak{gl}}
-\renewcommand{\o}{\mathfrak{o}}
-\renewcommand{\u}{\mathfrak{u}}
-\newcommand{\so}{\mathfrak{so}}
-\renewcommand{\sl}{\mathfrak{sl}}
-\newcommand{\Vir}{\mathfrak{Vir}}
-\newcommand{\Rcal}{\mathcal{R}}
-\newcommand{\p}{\partial}
-\newcommand{\pb}{\overline{\partial}}
-\newcommand{\zb}{\overline{z}}
-\newcommand{\vb}{\overline{v}}
-\newcommand{\Fb}{\overline{F}}
-\newcommand{\vphi}{\varphi}
-\newcommand{\eps}{\varepsilon}
-\newcommand{\TF}{\tilde{F}}
-\newcommand{\hF}{\hat{F}}
-\newcommand{\hH}{\hat{H}}
-\newcommand{\hE}{\hat{E}}
-\newcommand{\dz}{\frac{dz}{2\pi i}}
-\newcommand{\dw}{\frac{dw}{2\pi i}}
-\newcommand{\dx}{\frac{dx}{2\pi i}}
-\newcommand{\glhat}{\widehat{\mathfrak{gl}}(1)}
-\newcommand{\TL}{\tilde{L}}
-
-
-
 \begin{document}
 
 \maketitle
 
-\chapter*{Bidding}
+\chapter*{Implemented Conventions}
 
-\section*{Splinters}
+\section*{Open Misere Force}
 
-After partner bids a suit, a double jump in a different suit shows a shortness (singleton or void) and support for partners suit (usually 4+ card support, sometimes 3). When making a splinter, you need to consider how high the auction will get, and make sure your hand is strong enough accordingly.
+After partner has bid misere, Open Misere Force is the agreement that any nine bid is a cue bid showing a misere control, forcing to Open Misere. A Misere control in a suit is one of the two lowest cards (i.e a 4 or 5 in a red suit or a 5 or 6 in a black suit). After you bid 9X, partner will relay by bidding one step up, giving you the option to show another control or transfer to Open Misere by bidding 9NT. This is the most beneficial 500 conventions we have come up with and we use it all the time.
 
+When forcing partner into Open Misere, you should have controls in at least two suits (otherwise just pass, unless you're desperate). However, the simple `bid your lowest control' system does not allow you to show two touching controls. Thus I have modified the system so that when you have (exactly) two touching controls, you bid the higher one then sign off immediately. Assuming you would only force with at least two controls, this implies a control in the suit directly below the one you bid. If you show two controls, then you are showing exactly two controls and denying controls in any other suits.
+
+\begin{table}[h!]
+  \begin{center}
+    \label{tab:table1}
+    \begin{tabular}{|l|c|l|}
+      \hline
+      \textbf{Response to Misere} & \textbf{Misere Bidder} & \textbf{Forcer Rebid}\\
+      \hline
+      Any 8 bid: Natural, to play & Pass &\\
+      &&\\
+      9\S: \S & (9\C): Relay 
+        & 9\D: \S\D, no \C\H\\
+        && 9\H: \S\H, no \C\D\\
+        && 9NT: \S\C, and $\D$or \H\\
+      &&\\
+      9\C: \C, no \D & (9\D): Relay 
+        & 9\H: \C\H, no \S\D\\
+        && 9NT: \S\C, no \D\H\\
+      &&\\
+      9\D: \C\D, no \S\H & (OM): Sign off & \\ 
+      &&\\
+      9\H: \D\H, no \S\C & (OM): Sign off & \\ 
+      &&\\
+      
+      9NT: \D\H, and $\S$or \C & (OM): Sign off & \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{\textit{The Open Misere Force Structure.} Bids in brackets are made by the misere bidder, all other bids are by the forcer. The goal is to end in Open Misere, so once you have the required information you just bid Open Misere. The rule to remember is: if you have two touching suits, bid the higher one then sign off (i.e bid 9NT). To show three suits, either bid 9NT or 9S followed by 9NT to show both reds and one black or both blacks and one red respectively. Systemically, showing only two suits denies controls in the other suits, but you can opt to take this approach with three suits if you think it is necessary. With four controls, choose which way you would like to show three of them.}
+\end{table}
+
+There are only two ways to show a hand with three controls, due to the stringent room restrictions of the 9-level. The first way is to bid 9S followed by 9NT and the second is to directly bid 9NT. I have decide that 9S-9NT should show a control in both black suits and one red control, while a direct 9NT bid shows two red suits controlled and one black suit. This ensures that 9S definitely shows a Spade control, in case the opponents interfere in the auction.
+
+
+\newpage 
+
+\section*{Cue Raises and Cue Bidding}
+
+When the opponents have bid a suit, I do not recommend trying to also bid their suit naturally. This is especially true if you are playing with no misere restrictions, since they are less likely to be messing around. Therefore, we can use the opponents suit as an artificial cue bid. The most common use of this cue bid in bridge is to show partner strong support for their suit. This allows you to show partner that you have a good hand while keeping the auction at a low level, and allows us to start showing each other first round controls (Aces and voids). 
+
+Systemically, a cue-raise shows partner four card trump support and a good hand that wants to play at atleast the 8-level (possibly thinking about going higher). A good hand can include features like strong trumps, lots of off-suit, a good source of tricks or shortnesses (singletons/voids). Cue-raises are forcing to the 8-level.
+
+For example, suppose LHO opens 6S, partner bids 6H and RHO passes. With a strong hand you can make a cue-raise of 7S. You have now established what sut will be trumps and a force to the 8-level while keeping the auction below 7H. We now start cue-bidding first round controls (Aces/voids), including cue-bidding No trumps to show the joker. You always make the lowest available cue bid first, so if you skip a step you are denying a control in that suit. After LHO passes in our current example, 7C from partner shows a FRC in clubs, 7D would show a FRC in Diamonds while denying one in Clubs, 7NT shows the joker while denying Diamonds and Clubs and so on.
+
+A bid of 7X (X = partner's suit) or misere during a cue-bidding auction is an optional waiting bid, saying ``I have nothing to cue below 7X/misere, I don't have much to say and I'm waiting to hear from you". This could be a useful option if you are looking for just one card from partner in order to make a big bid. The information of what Aces partner does and does not have is so valuable in the play, and can change how you evaluate your hand. It is especially useful when declarer has to make decisions about what to keep from the kitty.
+
+If available, a jump cue in the opponents suit is a transfer to partner's suit. That is, jump cueing shows a good enough raise to play at the jump level, but you want partner to play it (usually because they have longer trumps and the kitty will be more useful to their hand). In the above example auction of (6S)-6H-(P), you can bid 8S as a transfer to 8H for partner. This should show a hand good enough for 8H, but with no interest in going higher. This also may be done on a strong 3-card suit, where partner might need any extra trumps found in the kitty.
+
+If after a cue-raise you know that you want to play at least 9X and are thinking about 10X, they you can use RKCB (see Experimental System Notes). This would be a perfect spot for such a convention, including the use of kickback since the trump suit has been clearly set.
+
+
+\newpage
+
+\chapter*{Experimental Conventions}
 
 \section*{Keycard}
 
 \subsection*{Roman Keycard Blackwood (RKCB)}
 
-There are SIX keycards in a suit contract - the three offsuit Aces, the Joker and the two bowers (as opposed to 5 in bridge). If playing standard Roman Keycard blackwood, 8NT is a keycard ask. The responses are (1430 style):
+There are six keycards in a suit contract - the three offsuit Aces (I will refer to them as OAces when convenient), the Joker and the two Bowers (as opposed to five keycards in bridge). After the partnership agrees on a trump suit, 8NT is a keycard ask. This is an artificial bid (alertable) and forcing. The responses are (1430 style):
 
-9S: 1 or 4 keycards\\
-9C: 0 or 3 keycards\\
-9D: 2 or 5 keycards, NO Joker\\ 
-9H: 2 or 5 keycards, including Joker.
+{9\S}: 1 or 4 keycards\\
+{9\C}: 0 or 3 keycards\\
+{9\D}: 2 or 5 keycards, no Joker\\ 
+{9\H}: 2 or 5 keycards, including Joker.
 
-Here I include the left bower as a keycard (slightly different to bridge where the Q of trump is not considered a keycard) because it is more or less necessary to know about when trying to bid a grand (a 10 bid). There is no response to show all 6 keycards: this is because I can't imagine a situation where someone is asking for keycards without any of them (maybe just respond 9NT if this somehow comes up).
+This convention is lets you figure out how many keycards your side holds when you are trying to bid a grand (a 10 bid). You must be ready to play at at least the 9 level, and if partner shows you all the missing keycards you should be bidding 10 (otherwise why are you asking). Here I include the left bower as a keycard (slightly different to bridge where the Q of trump is not considered a keycard) because it is necessary to know about when trying to bid a grand. There is no response to show all 6 keycards: this is because I can't imagine a situation where someone is asking for keycards without any of them. If this does happen to come up, responding 9NT should suffice.
 
-In the same way you can ask for the Queen in bridge, you can ask for the Joker. If asking for keycards and responder bids 9S or 9C, the asker can bid one step up to ask responder if they hold the Joker. Responder signs off in 9 trump if they lack the joker, or can bid 9NT if they have it \todo{Need better positive response structure}. This can help asker find 10NT if they seem to be off one or two bowers, but have great NT values\todo{Or maybe a safer sign off in 9NT}. 
-
-\todo[inline]{There's additional room here with an open misere bid. I think this can be used as some sort of enquiry (kings?), a negative response to something, or some way to right side a contract. Not exactly sure how to play it though.}
-
-\todo[inline]{Responses showing voids, specific king ask structure? Although there isn't any room for it while stopping below 10, it's possibly still helpful given kitty and hidden partner hand}
-
-In response to 8NT keycard, 9NT shows an even number of keycards and a void, 10X shows a void in X and an odd number of keycards.
-
-
+In the same way you can ask for the Queen in bridge, you can ask for the Joker. If Responder bids {9\S} or {9\C}, Asker can bid one step up ({9\C} or {9\D} respectively) to ask Responder if they hold the Joker. Responder signs off in 9 trump if they lack the joker, or can bid one step up if they have it (skipping 9 trumps of course, since that would be a sign off). See the Specific Ace Ask subsection for what to do when you are missing exactly one keycard.
 
 
 \subsection*{Kickback Variation}
 
 When using standard RKCB, if the agreed trump suit is not hearts, then some of the 8NT responses are above 9 trump. This risks being pushed to 10 trump when some important keycards are missing. Kickback solves this problem by starting the keycard conversation at a lower level when the agreed trump suit is lower - saving space. 
 
-After a trump suit has been agreed, bidding one step above 8 trump is kickback. When someone bids kickback, they are making a RCKB enquiry (as if they bid 8NT). They responses are the same, except they are encoded as steps above the kickback bid.
+After a trump suit has been agreed, bidding one step above 8 trump is kickback. For example, if Diamonds is agreed trumps, then {8\H} is kickback. If Clubs is trumps, then {8\D} is kickback and if Spades is trumps then {8\C} is kickback. When someone bids kickback, they are making a RCKB enquiry (as if they bid 8NT, which is the kickback suit when Hearts is trump). The responses are the same as RKCB, except they are encoded as steps above the kickback bid.
 
 1 Step up: 1 or 4 keycards\\
 2 Step up: 0 or 3 keycards\\
-3 Step up: 2 or 5 keycards, NO Joker\\ 
+3 Step up: 2 or 5 keycards, no Joker\\ 
 4 Step up: 2 or 5 keycards, including Joker.
 
 Asker can also enquiry about the Joker in the same way as normal RKCB.
 \todo[inline]{Situations where there is no agreed upon trump suit.}
 
-Sometimes, there is no agreed up trump suit yet, but a bid can still obviously be kickback. The assumed suit is the most recent suit that responder has bid. However, if there is no agreed up suit yet, then bidding a suit partner has already bid is natural \todo{Maybe??? might want kickback there though idk} and NOT kickback.
+Sometimes, there is no agreed up trump suit yet, but a bid can still obviously be kickback. The assumed suit is the most recent suit that responder has bid. However, if there is no agreed upon suit yet, then bidding a suit partner has already bid is natural \todo{Maybe??? might want kickback there though idk} and never kickback.
 \todo[inline]{Need to fill everything with examples}
 
-\todo[inline]{Confusion with splinters? :(}
 
-Over a six bid without competition, there can never be any confusion between a splinter and kickback. This is because a jump in another suit must always be below 8 trump. However there could be confusion with splintering 'at the 9 level' (i.e a splinter that forces 9 trump). This is a situation that might frequently occur in a competitive auction. Possibly, we can use 8NT to represent a splinter in the kickback suit in situations where such a 9-level splinter bid would be kickback. The bid 8NT can also be used to replace a cue bid that is taken up by kickback. In essence, it's as if we've switched the 8NT bid with the the bid one step above 8T. This saves the necessary space when keycarding, whereas splinters and cue bids don't necessarily need this space.
-
+%Over a six bid without competition, there can never be any confusion between a %splinter and kickback. This is because a jump in another suit must always be below 8 %trump. However there could be confusion with splintering 'at the 9 level' (i.e a %splinter that forces 9 trump). This is a situation that might frequently occur in a %competitive auction. Possibly, we can use 8NT to represent a splinter in the %kickback suit in situations where such a 9-level splinter bid would be kickback. The %bid 8NT can also be used to replace a cue bid that is taken up by kickback. In %essence, it's as if we've switched the 8NT bid with the the bid one step above 8T. %This saves the necessary space when keycarding, whereas splinters and cue bids don't %necessarily need this space.
 
 
+\subsection*{Specific Aces}
+
+Suppose you bid keycard and find out that you're missing one keycard, but your side has the joker and maybe the Right bower. Since you start with the lead, there is still a good chance you can make 10 tricks with a good hand if you keep the right suits after the kitty and choose the right suits to play. For example, you might be missing an Ace in one suit, but have another running offsuit so that the missing Ace doesn't matter. Hence, I think it can still be quite valuable to find out which keycards partner has. The beauty of 500 is that the Open Misere bid gives us a little bit of extra room to find out this information efficiently.
+
+For simplicity we assume that hearts has been flagged as the trump suit (i.e 9NT is the kickback suit), although this same structure can of course be used with Kickback by shifting every bid accordingly. We assume that Asker has found out that their side holds a total of 5 keycards including the Joker.
+
+\newpage
+\begin{table}[h!]
+    \begin{center}
+      \label{tab:table1}
+      \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Response to 9NT} & \textbf{Asker Rebid} & \textbf{Responder Rebid}\\
+        \hline
+        10\S: \S A $\mid$ no \C A \D A & (10\C): Inquiry  
+        & 10\D: \S A $\mid$ no \C A \D A\\
+        \qquad (OR: \S A \C A \D A)
+        && 10\H: \S A \C A \D A\\
+        &&\\
+        & (10\D): \H A? Soft trumps & 10\H: \S A $\mid$ no \H A or not worried\\
+        && 10NT: \S A \H A, worried\\
+        &&\\
+        & (10\H): Sign off, \D A&\\
+        \hline
+        10\C: \C A $\mid$ no \S A \D A& (10\D): \H A? Soft trumps
+        & 10\H: \C A $\mid$ no \H A or not worried\\
+        && 10NT: \C A \H A, worried\\
+        &&\\
+        & (10\H): Sign off&\\
+        \hline
+        10\D:  \D A $\mid$ no \S A\C A & (10\H): Sign off &\\
+        &&\\
+        10\H: no \S A \C A \D A && \\
+        \hline
+        OM: Exactly 2 OAces & (10\S): Relay, no OAces   
+        & 10\C: \C A \D A $\mid$ no \S A\\
+        && 10\D: \S A \D A $\mid$ no \C A\\
+        && 10\H: \S A \C A $\mid$ no \D A\\
+        &&\\
+        & (10\C): \H A, Soft trumps & 10\D: not worried (transfer)\\
+        && 10\H: worried (transfer)\\
+        && 10NT: worried\\
+        &&\\
+        &(10\D): \H A? Confirms all OAces & 10\H: no \H A or not worried\\
+        & \qquad \qquad \quad (worried about trumps) & 10NT: \H A, worried\\
+        &(10\H): Sign off, one OAce&\\
+        \hline
+      \end{tabular}
+    \end{center}
+    \caption{\textit{The Specific Ace Ask structure.} Bids in brackets are made by the asker, all other bids are by responder. In theory, the partnership should hold exactly 5 out of 6 keycards, hence after a {10\S} response Asker should know which case it is. However, this might not be the case in practise, so I have included an inquiry {10\C} bid. Enquiring about the \H A should confirm all the off suit aces and show worry about the trump suit (most likely missing the Right Bower). Responder can figure out which bowers are missing from the suit, knowing that Asker cannot have the \H J. They should then do something intelligent if they have the \H A, deciding whether to stick it out in {10\H} (maybe with the \H J and/or some extra trump length) or try 10NT (maybe with some some suits that are running after hearing about partner's Aces). After bidding OM, you show the OAce you don't have with 1 step being low, 2 steps being middle and 3 steps being high. The way to remember this system is that the {10\S}, {10\C}, {10\D} shows exactly that Ace (or sometimes all three in the case of {10\S}) and if you have 2 Aces you go through OM. Also {10\D} is a \H A inquiry.}
+  \end{table}
+
+  In order for this structure to work when a suit other than hearts is trump, you need to be playing kickback. In that case, the bids are all shifted down by however many steps the kickback suit is below 9NT. For example, if Diamonds are trump, shift every bid down by 1. If clubs are trump shift down by 2 and if spades are trump shift down by 3 (OM is included as a normal bid in this shifting math). 
+
+  Knowing how many keycards partner holds and what aces they hold should tell Asker about the trump suit by implication. Knowing what high trumps partner holds and how to get to their hand can tell Asker exactly how to play the trump suit (maybe they have to guess which bower they have). This means declarer at trick one can decide the best way to pick up the trump suit and knows how to get to partners hand for a first round finesse, say, if needed. 
+
+  For example, suppose you have a 5 card trump suit headed by the joker and an outside Ace. Partner has shown support and shows you 3 keycards including two outside Aces using the Ace ask structure (this time I don't care what suit they are in). Thus your side is missing exactly one of the bowers. At trick one, you put partner on lead with one of their aces (leading a high card to indicate you want a switch). Partner will now know how to play the trump suit. They know you have the Joker since you forced grand but did not ask about the joker (they have to play you for the Joker anyway). If they have the Right Bower, they will lead it and lead towards you (hopefully giving you count so you can decide whether to play for the finesse or the drop). If they don't have the Right Bower, they should lead the Left Bower (hopefully one of you has the Ace of trumps) so you can finesse. So even if you bid a grand without a solid trump suit, having all this information helps immensely in getting the play of the hand correct.
+
+  The other case where this will be useful is when your side is missing one offsuit Ace. Declarer finds out what Ace this is and keeps their high cards in the other suits. You now never worry about going off by randomly playing the wrong suit, and have a lot more possibilities to play for in the other suits (say, taking a finesse or trying to cross ruff on the weak suit). This will at least remove the thought of playing for layouts where your partner is missing the necessary Ace, and points you in the direction of finding other layouts to play for.
+
+
+
+  An Open Misere ask (instead of a 9NT ask) could be used as some sort of asking for Kings or some sort of \H A inquiry. 
+
+  If showing the Joker takes you above 9NT, respond as if you are responding to a 9NT Specific Ace inquiry. 
 
 
 
 
-
+\newpage
 \section*{TK 6NT}
+
+\todo[inline]{Thinking about removing this. Instead, 6NT opening should be a strong balance hand (i.e no good primary suit) and a 6NT response to partner's bid might be a strong balanced or a good raise (if a cue raise isn't available??).}
 
 This is a system developed by me and Bazli (Tomlin-Karattiyattil) in 2015 when we first starting playing. The idea is to use NT bids when our side has at least 3 aces and the joker, then determine which aces we hold. Knowing about only 3 aces and the joker can help the cardplay and kitty decisions significantly easier.
 
@@ -225,134 +189,10 @@ This is a system developed by me and Bazli (Tomlin-Karattiyattil) in 2015 when w
 If opener holds 3 Aces after 6NT-7NT, they bid the Ace they don't have. Responder will know what's going on based on their holding \todo{is this cheating? Maybe in bridge}. 
 
 
-
-
-\section*{Open Misere Force}
-
-\section*{Cue Raises}
-\section*{Game Tries, Slam Tries (Cue bidding)}
-\section*{Ideas}
-possibilities for precision style 6NT? Relay systems?
-
-
-
+\newpage
 \chapter*{Carding}
 
-\section*{Signals}
-
-When following suit with a low card, which low card should you play? Sometimes, it doesn't matter whether you play your 5 or 8 because they are never going to contend for a trick. Given this freedom, we have room to communicate with partner through the low cards we choose to play. Agreements to what our low cards mean is called signalling. It often goes unnoticed by the opposition, and it can be a great advantage to tell partner about your hand.
-
-There are three types of basic signals: attitude, count and suit preference.
-
-\subsection*{Attitude}
-
-The most basic variation of attitude signals is known as \textit{high encourage}. That is, when following to a trick that you aren't attempting to win (e.g partner leads an offsuit Ace), or when discarding, a high spot card (spot card = not a picture card) tells partner that you like the suit, and a low card tells partner that you don't like the suit (or are indifferent about it). 
-
-\todo[inline]{Examples}
-
-It is important to notice that a `high' spot card is only relative to the cards you hold. If you hold AK65, then discarding the 6 is a encourage signal while discarding the 5 is a discouraging signal from your point of view. This isn't always clear from partner's point of view, the 6 looks pretty low to them. This can be clarified by a second discard. If you discard the 6 then the 5, partner will know that you played high first, then low, and can be sure that you have sent an encouraging signal. The same goes when you only have high spot cards, say J98. Discarding the 8 looks encouraging, but following it up with the 9 makes it clear that the 8 was a discourage. If you have A984 and want to encourage, don't play the 8 then the 9, because that is discouraging. Discard the 9, then the 4 if you wish (and can afford it). Of course, signalling should never override trick taking. If you have AQ4, don't discard the Q to encourage (that Q might be a trick!!). Instead, try discouraging other suits, and hopefully partner can work out what you have through a process of elimination.
-
-Playing high encourage attitude signals is a good was to get used to thinking about signalling. It's natural because you only need to think about playing high when you want to send a signal (when not paying attention, people tend to discard their lowest, so partner won't get confusing or exciting signals). However, my preferred method of attitude signalling is \textit{low encourage}. That is, discarding or following with a low card is encouraging, and a high card is discouraging. This makes more sense because higher cards in a suit that I like are more valuable than low cards. It's important to notice what spot cards partner first discards, because the order that they discard can tell you what suit is more important to them. Further, after the initial couple discards, partner may not have anything else to say and will just be discarding cards they don't want. It is up to good judgement sometimes to figure what is an attitude signal and what isn't.
-
-In bridge, signals are only useful on defence to give partner information about your hand (and therefore declarer's hand). In 500, it is useful to signal as declarer as well, to help partner play their hand well and find your honours.
-
-\subsection*{Count}
-
-Another signal that can be given through spot cards is count. A count signal tells partner whether you started with an even number of cards in the suit lead or an odd number. The method I like to play (and is pretty much standard in youth bridge) is called reverse count. This means that when following to a suit, playing a \textit{high} spot card shows an \textit{odd} number of cards in the suit (starting number of cards, always) and playing a \textit{low} spot card shows an \textit{even} number. There is the same ambiguity about what is high or low relative to partners hand, and this can be clarified by their second card played in the same way it can with an attitude signal. That is, following with a high card then a low card shows an odd number, and following low then high shows an even number. The way I remember this is: ``It would be \textit{odd} to play \textit{high}'', which is true. Using the information that partner has an odd or even number of cards in a suit, it is usually clear from context whether partner has 2 or 4, 3 or 5, etc.
-
-\todo[inline]{Examples}
-
-When a signal is count and when a signal is attitude is up to partnership agreement. I play that when following to a trump lead (while defending or declaring), we signal count (reverse count, as explained above). It is great when declaring to know exactly how many trumps partner has, which is not always clear from the bidding. It is also useful defending to know whether partner has a stray trump for a potential ruff or entry, or declarer has the rest. This is a massive help towards counting declarer's tricks on defensive. Knowing declarers trumps tells you about most of their hand, and helps figure out what to do offsuit.
-
-On discards we signal attitude (low encourage). Knowing where partner's high cards are is useful information for setting up tricks, cashing tricks, or looking for places to discard losers (as declarer). When partner leads a suit, we give attitude (low encourage) for the suit being lead. Essentially telling partner whether or not we want the suit continued. For example, partner leads the A and you have Kxx, we encourage if we want to cash the K. On an opposition lead, it is not always clear what we signal (or if we signal at all). I tend to still signal attitude, in case the opponents are setting up tricks for me and I need to tell partner about this (which happens a lot). Although I have not discussed this agreement with any partners yet.
-
-\subsection*{Suit Preference}
-
-Suit preference is a much rarer and harder to read signal. It comes up in bridge, but I've yet to use it well in 500, because no one who I play with have learnt it yet.
-
-Let's say you are playing with Hearts trumps and you hold A84 in some offsuit (let's say clubs). You draw trumps and through some count signal know that partner has two left. You lead the AC, to which partner discards. You would like partner to trump your two little clubs. So you could lead the 4C, they trump, but now what? You need them to give you the lead, so you can give them another ruff, but how? They can't lead trumps back, because that takes aways their trump, so they only have two options to lead back (in this case, diamonds or spades). This is where a suit preference signal helps partner get it right. For the first ruff, it doesn't matter whether you lead the 4 or the 8 to them. So leading the 4 asks them to return the lower ranked (rank = bidding order of the suit) suit, and leading the 8 for them to ruff shows preference for the higher ranked suit returned. In this case, leading the 8C asks for a Diamond return (Diamonds are higher than Spades in the bidding) and leading the 4C asks for a Spade return. The same idea applies when looking for ruffs on defence, a situation where it is more likely to be necessary to get it right on the first try (before declarer draws the rest of the trumps).\todo{Replace this with an actual hand example.}
-
-The idea is, you can give partner a preference between two suits by whether you play a high spot card or a low spot card. It can only apply in situations where it is clear that there are only two options for suits, e.g the ruffing situation above, but not limited to that. In bridge, there is lots of room for subtle suit preference signals, and working these into a partnership can give you that little bit of extra luck in getting things right. 
-
-Reading a suit preference signal is subtle and very situational, so it takes a lot of experience to know not only when to give a suit preference signal, but also when your partner might be giving you one. Here's an example from a game I played with Bazli last night where trusted signalling would have gotten us over the line in 10NT (a match decider!).
-
-\begin{center}
-Bazli\\
-\hand*!{Y AKQJ}{A8}{Q}{A7}
-    
-Josh\\
-\hand*!{8}{T654}{AK7}{QT}
-\end{center}
-\todo[inline]{Ideally I want to reprogrm the one-down package to accomodate for weird 500 rules/symbols. For now, I've got B/b = right/left bower and Y = Joker (which is terrible, would prefer a fancy J, but hey at least I can call it the Yoker).}
-
-Oh this hand, Bazli bid 10NT over West's Open Misere (with no voluntary bidding from me). Looking at my hand with AK of diamonds, I'm feeling pretty confident. He's probably got a running suit (my guess is in spades), definitely has the Joker, and I've got a bonus two tricks for him to hopefully get us over the line.
-
-Immediately he leads the JS, which for sure is going to hold and tells me he has at least top four spades. He starts running spades, and now I need to signal to tell him where my tricks are. I don't want to pitch down to AK tight in diamonds, and I don't want to give him a possibly confusing 7D discard (in retrospect this may be fine, by what if I had AK9 or AKT?). The 7D might even set up as a trick in this situation, since the defenders are under a lot of squeeze pressure. I want to keep my QT doubleton club to keep the clubs threatened and make the defence find awkward discards, so my one priority here was to discard hearts. I wanted to send a strong signal that I do not like hearts, so I pitched the T, followed by the 6 then the 5. Then I pitched the 7D to try to tell Bazli that I liked diamonds, but this wasn't so clear to read. I think it should be very clear that I don't like hearts, but how does he know what to do between clubs and diamonds?
-
-This is a perfect situation for giving a suit preference signal when I discard hearts. On my second heart discard (after discarding the T), there is no difference between whether I discard the 6,5 or 4. If it wasn't already clear that I didn't like hearts, discarding any of these cards will clarify. However, I plan to discard all of these, so I have a choice in what order I discard them. So I should discard the 6, then the 4 (or 5) to tell partner that I like the higher ranked suit. That is, I like diamonds. Doing this allows me to encourage diamonds without needing to discard the 7D, a potentially useful card which is certainly difficult to read. If instead I had discarded the 4, then the 5 (or 6), this should tell partner about a Club preference (or possibly no preference). If I really wanted a Club, I would discard the 4, then the 6, then the 5, just to make sure partner knows that something is up.
-
-On the actual hand Bazli cashed all his spades, cashed his two aces (on which East threw the KC, surprisingly setting up my QC, maybe it was a singleton), then tanked. He lead the Joker as a Heart, then exited a Heart playing me for the QH (I believe the KH either dropped or was already discarded). In this case, either a Club or a Diamond would have sufficed, and we would have won the match. Instead, we went down one and now I have no trickster chips.
-
-
-\subsection*{Leads}
-
-When leading a suit, we can choose to lead different cards based on what we hold in the suit. Our choices of what to lead are made with two things in mind: communicating to partner and not blowing tricks. 
-
-When holding an honour sequence (e.g AKxx, KQx, KQJxx, QJ10xx) we lead \textit{top of a sequence}. This ensures that we are knocking out opponents honours to set up our own tricks, while telling partner about our suit quality. When partner leads an honour, you know that they 1. don't have the honour above that and 2. they have the honour below that (almost always). This can help you decide whether to finesse, duck or cover. For example, if you hold Axx and partner leads the Q, they have the J (and probably the 10) and your side is missing the K. Thus, if you need more offsuit tricks then taking the finesse (playing small instead of the Ace) can set up your offsuit tricks, and gains an extra trick when the K is trapped onside. When holding KQx(x), leading the K guarantees setting up atleast one trick, whereas leading low may lose to the J if your side is missing the A and J. Sometimes, it may be necessary to underlead the KQ (if you know partner has the A or J, or you need them to have an honour in this suit). Thus these leading rules are only guidelines for when you are lacking enough information about the hand to make a more informative play.
-
-\todo[inline]{Example, Overleading AKxx instead of leading the K situations (like ruffing)}
-
-This also applies to interior sequences (e.g KJ10xx, or certain AJ10xx, AQJxx if you are not leading the A for whatever reason). In these suits, we lead \textit{top of an interior sequence}.
-
-The most important place where leading agreements matter is in the trump suit. When leading trump, if we are going to lead an honour sequence, we follow the above rules. For example, holding the Joker and Right Bower we will lead the Joker if we choose to lead high (top of a sequence). Holding the Joker, Ace, King we will the Ace if we choose not to lead the Joker (top of an interior sequence). These agreements don't override your judgement. If you have an honour sequence in trump, but think you need to underlead it from context, then you should underlead it. But if you are going to lead a sequence, lead from the top. The most useful lead in the trump suit is the lead of an interior sequence. It gives partner an opportunity to produce a high card for you, take a finesse against their high card, or give you an option for a finesse on the way back (if the cover and lead a trump back).
-
-\todo[inline]{Examples, underleading sequences}
-
-In trumps, if we are leading away from an honour we lead \textit{fourth highest}. This tells partner to play high (usually) and gives them information about your trump suit. For example, holding JoAQ7, lead the 7 (if you decided not to lead the Joker). From JoAQ87, lead the 8 (fourth best). From JoAQ987, lead the 9. If partner sees you lead a low card, and then later you show up with a smaller card (e.g you follow small or ruff small), then they know you must have started with at least 5 trumps. As the hand goes on, you can tell partner how many trumps you started with by showing them the cards smaller than what you initially lead. Sometimes it is not clear to partner how many trumps you had from the bidding (you might get some in the kitty too) so this lead helps clear that up. When returning the trump suit, we also lead fourth highest back if we decide to play low (fourth highest meaning the fourth highest from your original holding of course).
-
-If leading a doubleton (a two card suit) we lead \textit{top of a doubleton}. For example, from 10x lead the 10, from 8x lead the 8, even from something like Qx, you can usually lead the Q. From Kx, it's not so clear and you should use your judgement. Sometimes you underlead Kx, hoping the opponents hop Ace, and sometimes you lead the K hoping partner has the A or Q. In trumps, we still lead top of a doubleton. This also applies when we win a trump trick with honour third. For example, if partner leads a small trump to us (hopefully fourth best) and we hold Jo95, then we should win the Jo and return the 9 (\textit{top of a remaining doubleton}). This is essentially the same as a count signal (we return high instead of low, because we started with an odd number).
-
-\todo[inline]{Examples}
-
-The following offsuit leads are an idea I just had and has not been tested yet. I think it should work well, given the weird shortness of the offsuits in 500.
-
-In bridge, it is often important to determine the distribution of the offsuits to take more tricks. In 500, there are so little cards offsuit (especially when in a suit contract) that distribution isn't as important. It's more important to know where the high cards are. When leading offsuit, we lead attitude (that is, low encourage as explained above). From a suit we like (with a good honour, say) we lead as low as possible. From a suit we don't like (10 high, Jxx, xxxx, say) we lead as high as we can afford. For instance, from K975, Q1065, K65, lead the 5 to tell partner that you like the suit. If for some magic reason you need to underlead A1084, lead the 4. From J94, 1096, 9865, lead the 9 to tell partner that you do not like the suit. This is consistent with leading top of a doubleton, because partner knows you can't an honour in that suit. Although sometimes partner will have to figure out whether you have a shortness and can give you a ruff, even if you've made a discouraging lead.
-
-
-
-\section*{Following Suit}
-
-When following suit, the carding is slightly different to when leading a suit. If holding AKxx and partner leads small to you, you almost always want to win the trick with the A or K. Since you hold both the A and the K, those cards are the \textit{same} value to you, because no one else can beat either one. We call cards that differ by one rank \textit{touching cards} or \textit{equals}. More examples of touching honours are AKQ, KQ, KQJ, QJ10, 9876, 87, etc.
-
-When being lead to, if we choose to play a specific high card (high being higher than the currently played cards), we play the \textit{lowest of touching cards}. This is important when choosing to play an honour, In our example above, if partner leads to us holding AKxx, we win the K instead of winning the A. This (very standard) agreement has two advantages. One, now winning the A automatically denies the K (you would have played the K if holding AK). Two, if you win on the King, it looks likely that you also have the Ace. This is because if you win the King, that carries the additional information that the person after you did not beat your King with their Ace (if they had it) which they would do a lot of the time. This information is not available if you choose to win the Ace from AK. That being said, winning the King does not guarantee holding the Ace (partner could have it, second seat might have ducked if they are a good player), but it helps figure out the location of the missing Ace. This logical also applies to holdings such as KQxx, KQJx, AKQx, KJ10xx (if you choose to play the J or 10, then play the 10). Even small holdings such as 98xx, 109xxx, if you choose to play high.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter*{General Strategy}
-
-
+See \textit{Notes on Play} for a summary of our carding agreements and an explanation of leading and signalling conventions.
 
 
 
